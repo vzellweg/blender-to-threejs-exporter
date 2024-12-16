@@ -1,0 +1,20 @@
+{
+  "name": "blender-to-threejs-exporter",
+  "version": "0.1.0",
+  "description": "A Blender plugin to export Geometry Nodes networks to three.js code.",
+  "main": "index.js",
+  "scripts": {
+    "build:plugin": "yarn clean && zip -r blender-to-threejs-exporter.zip exporter/ __init__.py exporter/exporter.py exporter/node_mappings.py",
+    "lint": "flake8 exporter/ tests/",
+    "format": "black exporter/ tests/",
+    "clean": "rm -f blender-to-threejs-exporter.zip",
+    "prepare": "yarn format && yarn lint",
+    "watch:plugin": "while true; do inotifywait -e modify,create,delete -r exporter/; yarn build:plugin; done"
+  },
+  "repository": "git@github.com:vzellweg/blender-to-threejs-exporter.git",
+  "author": "Victor Zellweger <vazellweg@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "watch": "^1.0.2"
+  }
+}
